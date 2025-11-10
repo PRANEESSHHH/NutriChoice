@@ -349,7 +349,7 @@ if not df.empty:
 # --- Dashboard Header ---
 st.markdown("""
 <div class="main-header">
-    <h1 class="header-title">NutriChoice</h1>
+    <h1 class="header-title">🥗 NutriChoice</h1>
     <p class="header-subtitle">Advanced Nutritional Intelligence & Food Analytics Platform</p>
 </div>
 """, unsafe_allow_html=True)

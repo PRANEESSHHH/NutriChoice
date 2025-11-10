@@ -287,12 +287,14 @@ df = load_data(DATA_FILE)
 
 # --- Sidebar Filters ---
 with st.sidebar:
-    st.markdown("<h2 style='color: #667eea; margin-bottom: 1.5rem;'>🔧 Control Panel</h2>", unsafe_allow_html=True)
-    
-    # Refresh button
-    if st.button("🔄 Refresh Dashboard", use_container_width=True):
-        st.cache_data.clear()
-        st.rerun()
+    # Control Panel Header with Refresh Icon
+    col1, col2 = st.columns([4, 1])
+    with col1:
+        st.markdown("<h2 style='color: #667eea; margin-bottom: 0;'>🔧 Control Panel</h2>", unsafe_allow_html=True)
+    with col2:
+        if st.button("🔄", key="refresh_btn", help="Refresh Dashboard"):
+            st.cache_data.clear()
+            st.rerun()
     
     st.markdown("<br>", unsafe_allow_html=True)
     

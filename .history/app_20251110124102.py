@@ -213,6 +213,23 @@ st.markdown("""
         box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
     }
     
+    /* Refresh Icon Button Styling */
+    button[key="refresh_btn"] {
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        padding: 0 !important;
+        color: #667eea !important;
+        font-size: 1.5rem !important;
+    }
+    
+    button[key="refresh_btn"]:hover {
+        color: #764ba2 !important;
+        transform: rotate(90deg) !important;
+        box-shadow: none !important;
+        background: transparent !important;
+    }
+    
     /* Selectbox & Input Styling */
     .stSelectbox>div>div, .stMultiSelect>div>div, .stTextInput>div>div {
         border-radius: 10px;
@@ -287,12 +304,34 @@ df = load_data(DATA_FILE)
 
 # --- Sidebar Filters ---
 with st.sidebar:
-    st.markdown("<h2 style='color: #667eea; margin-bottom: 1.5rem;'>🔧 Control Panel</h2>", unsafe_allow_html=True)
+    # Control Panel Header with Refresh Icon
+    st.markdown("""
+    <div style='display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;'>
+        <h2 style='color: #667eea; margin: 0;'>🔧 Control Panel</h2>
+        <span style='font-size: 1.5rem; cursor: pointer; color: #667eea;' title='Refresh Dashboard'>🔄</span>
+    </div>
+    """, unsafe_allow_html=True)
     
-    # Refresh button
-    if st.button("🔄 Refresh Dashboard", use_container_width=True):
+    # Hidden refresh button triggered by the icon
+    if st.button("Refresh", key="hidden_refresh", help="Refresh Dashboard", type="secondary"):
         st.cache_data.clear()
         st.rerun()
+    
+    st.markdown("""
+    <style>
+        button[kind="secondary"] {
+            display: none !important;
+        }
+    </style>
+    <script>
+        // Add click handler to refresh icon
+        document.querySelectorAll('span[title="Refresh Dashboard"]').forEach(span => {
+            span.onclick = () => {
+                document.querySelector('button[key="hidden_refresh"]')?.click();
+            };
+        });
+    </script>
+    """, unsafe_allow_html=True)
     
     st.markdown("<br>", unsafe_allow_html=True)
     

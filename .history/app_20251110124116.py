@@ -213,6 +213,23 @@ st.markdown("""
         box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
     }
     
+    /* Refresh Icon Button Styling */
+    button[key="refresh_btn"] {
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        padding: 0 !important;
+        color: #667eea !important;
+        font-size: 1.5rem !important;
+    }
+    
+    button[key="refresh_btn"]:hover {
+        color: #764ba2 !important;
+        transform: rotate(90deg) !important;
+        box-shadow: none !important;
+        background: transparent !important;
+    }
+    
     /* Selectbox & Input Styling */
     .stSelectbox>div>div, .stMultiSelect>div>div, .stTextInput>div>div {
         border-radius: 10px;
@@ -287,12 +304,38 @@ df = load_data(DATA_FILE)
 
 # --- Sidebar Filters ---
 with st.sidebar:
-    st.markdown("<h2 style='color: #667eea; margin-bottom: 1.5rem;'>🔧 Control Panel</h2>", unsafe_allow_html=True)
-    
-    # Refresh button
-    if st.button("🔄 Refresh Dashboard", use_container_width=True):
-        st.cache_data.clear()
-        st.rerun()
+    # Control Panel Header with Refresh Icon
+    col1, col2 = st.columns([5, 1])
+    with col1:
+        st.markdown("<h2 style='color: #667eea; margin: 0; padding-top: 0.3rem;'>🔧 Control Panel</h2>", unsafe_allow_html=True)
+    with col2:
+        st.markdown("""
+        <style>
+            div[data-testid="column"]:has(button[key="refresh_btn"]) button {
+                background: transparent !important;
+                border: none !important;
+                box-shadow: none !important;
+                color: #667eea !important;
+                font-size: 1.8rem !important;
+                padding: 0 !important;
+                width: 100% !important;
+                height: 40px !important;
+            }
+            div[data-testid="column"]:has(button[key="refresh_btn"]) button:hover {
+                background: transparent !important;
+                color: #764ba2 !important;
+                border: none !important;
+                box-shadow: none !important;
+            }
+            div[data-testid="column"]:has(button[key="refresh_btn"]) button:active {
+                background: transparent !important;
+                border: none !important;
+            }
+        </style>
+        """, unsafe_allow_html=True)
+        if st.button("🔄", key="refresh_btn"):
+            st.cache_data.clear()
+            st.rerun()
     
     st.markdown("<br>", unsafe_allow_html=True)
     

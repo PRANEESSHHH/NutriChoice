@@ -7,7 +7,7 @@ import numpy as np
 
 # --- Page Configuration ---
 st.set_page_config(
-    page_title="NutriChoice",
+    page_title="NutriAnalytics Pro",
     page_icon="🥗",
     layout="wide",
     initial_sidebar_state="expanded"
@@ -349,7 +349,7 @@ if not df.empty:
 # --- Dashboard Header ---
 st.markdown("""
 <div class="main-header">
-    <h1 class="header-title">NutriChoice</h1>
+    <h1 class="header-title">🥗 NutriAnalytics Pro</h1>
     <p class="header-subtitle">Advanced Nutritional Intelligence & Food Analytics Platform</p>
 </div>
 """, unsafe_allow_html=True)
@@ -646,7 +646,7 @@ if show_raw_data:
 st.markdown("<br><br>", unsafe_allow_html=True)
 st.markdown("""
 <div style='text-align: center; color: rgba(255,255,255,0.7); font-size: 0.9rem; padding: 1rem;'>
-    <p>🥗 <strong>NutriChoice</strong> | Advanced Food Intelligence Platform</p>
+    <p>🥗 <strong>NutriAnalytics Pro</strong> | Advanced Food Intelligence Platform</p>
     <p style='font-size: 0.85rem;'>Powered by Streamlit & Plotly | Data-Driven Nutrition Insights</p>
 </div>
 """, unsafe_allow_html=True)
